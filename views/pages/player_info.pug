@@ -1,0 +1,70 @@
+//- player-info.pug
+include ../partials/header.pug
+include ../partials/menu.pug
+
+div.container
+  br
+  div.row
+    div.col-4
+      div.card
+        //- TODO: Modify the pug code below to conditionally set the image_src
+        - let image_src = '../../resources/img/helmet.jpg'
+        if (gameStats)
+           if(gameStats.id == 1)
+             - image_src = '../../resources/img/player1.jpg'
+           else if(gameStats.id == 2)
+             - image_src = '../../resources/img/player2.jpg'
+           else if(gameStats.id == 3)
+             - image_src = '../../resources/img/player3.jpg'
+           else if(gameStats.id == 4)
+             - image_src = '../../resources/img/player4.jpg'
+           else if(gameStats.id == 5)
+             - image_src = '../../resources/img/player5.jpg'
+           else if(gameStats.id == 6)
+             - image_src = '../../resources/img/player6.jpg'
+           else if(gameStats.id == 7)
+             - image_src = '../../resources/img/player7.jpg'
+           else if(gameStats.id == 8)
+             - image_src = '../../resources/img/player8.jpg'
+           else if(gameStats.id == 9)
+             - image_src = '../../resources/img/player9.jpg'
+           else if(gameStats.id == 10)
+             - image_src = '../../resources/img/player10.jpg'
+
+        img.card-img-top#player_img(src= image_src, alt="Football Player")
+        div.card-body.mx-auto
+          form.form(action="/player_info/post", method="get")
+            select.custom-select(name="player_choice", onchange="this.form.submit()")
+              option(selected) Select Player
+              //- TODO: Populate the select with player options. Set the value to the player's id and display the player's name.
+              - if(playerName)
+                  for row in playerName
+                    if(idPlayer == row.id)
+                      option(value=row.id selected)= row.name
+                    else
+                      option(value=row.id)= row.name
+
+    div.col-8
+      div.table-responsive
+        table.table
+          //- TODO: Set the player's information. On select, fill in the player's information in each of the field below. You will need to calculate the average rushing, receiving, and passing yards.
+          tr
+            th Year
+            td= gameStats.year
+          tr
+            th Major
+            td= gameStats.major
+          tr
+            th Games Played
+            td= gameNum
+          tr
+            td= "Passing Yards: " + gameStats.passing_yards
+            td= "Avg. Passing Yards: " + (gameStats.passing_yards/gameNum)
+          tr
+            td= "Rushing Yards: " + gameStats.rushing_yards
+            td= "Avg. Rushing Yards: " + (gameStats.rushing_yards/gameNum)
+          tr
+            td= "Receiving Yards: " + gameStats.receiving_yards
+            td= "Avg. Receiving Yards: " + (gameStats.receiving_yards/gameNum)
+
+include ../partials/footer.pug
