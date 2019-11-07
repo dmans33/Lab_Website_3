@@ -9,27 +9,8 @@ div.container
       div.card
         //- TODO: Modify the pug code below to conditionally set the image_src
         - let image_src = '../../resources/img/helmet.jpg'
-        if (gameStats)
-           if(gameStats.id == 1)
-             - image_src = '../../resources/img/player1.jpg'
-           else if(gameStats.id == 2)
-             - image_src = '../../resources/img/player2.jpg'
-           else if(gameStats.id == 3)
-             - image_src = '../../resources/img/player3.jpg'
-           else if(gameStats.id == 4)
-             - image_src = '../../resources/img/player4.jpg'
-           else if(gameStats.id == 5)
-             - image_src = '../../resources/img/player5.jpg'
-           else if(gameStats.id == 6)
-             - image_src = '../../resources/img/player6.jpg'
-           else if(gameStats.id == 7)
-             - image_src = '../../resources/img/player7.jpg'
-           else if(gameStats.id == 8)
-             - image_src = '../../resources/img/player8.jpg'
-           else if(gameStats.id == 9)
-             - image_src = '../../resources/img/player9.jpg'
-           else if(gameStats.id == 10)
-             - image_src = '../../resources/img/player10.jpg'
+        if(idPlayer)
+          -image_src='../../resources/img/player'+idPlayer+".jpg"
 
         img.card-img-top#player_img(src= image_src, alt="Football Player")
         div.card-body.mx-auto
